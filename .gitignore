@@ -1,0 +1,8 @@
+# env
+Pipfile
+venv
+
+#pycache
+test/__pycache__/
+calculator_app/__pycache__/
+__pycache__/
