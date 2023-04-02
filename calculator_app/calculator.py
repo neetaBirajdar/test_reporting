@@ -1,19 +1,31 @@
 # Calculator which takes 2 values of type in int or float and gives the result.
 # Gives error if there are invalid values given
 
+type_error_message = "Failed: Input values type is not in [int, float]"
+
 
 class Calculator:
-    def addition(self, value_1, value_2) -> int | str:
-        # Add given two values and returns result
 
+    # Validates the input value types and returns True or False
+    def input_type_validator(self, value_1, value_2) -> bool:
+        input_is_number = False
         if isinstance(value_1, int | float) and isinstance(value_2, int | float):
-            # checks the type of value_1, value_2
-            result = value_1 + value_2
-        else:
-            # returns failed message when the value type are int or float
-            result = "Failed: Input values type is not in [int, float]"
+            input_is_number = True
+        return input_is_number
 
-        return result
+    # Add given two values and returns result
+    def addition(self, value_1, value_2) -> int | str:
+        given_valid_inputs = self.input_type_validator(value_1, value_2)
+        if given_valid_inputs is not True:
+            return type_error_message
+        return value_1 + value_2
+
+    # Subtract given two values and returns result
+    def subtraction(self, value_1, value_2) -> int | str:
+        given_valid_inputs = self.input_type_validator(value_1, value_2)
+        if given_valid_inputs is not True:
+            return type_error_message
+        return value_1 - value_2
 
 
 def call_calculator():
@@ -25,7 +37,11 @@ def call_calculator():
 
     # Check for functionality
     addition_result = cal.addition(value_1, value_2)
-    print(f"\nAddition:  {value_1} + {value_2} -> {addition_result}")
+    print(f"\nAddition:     {value_1} + {value_2} -> {addition_result}")
+
+    # Check for functionality
+    subtraction_result = cal.subtraction(value_1, value_2)
+    print(f"Subtraction:  {value_1} - {value_2} -> {subtraction_result}")
 
 
 # call and verify if calculator works
