@@ -2,6 +2,7 @@
 # Gives error if there are invalid values given
 
 type_error_message = "Failed: Input values type is not in [int, float]"
+divide_by_zero_error_message = "Failed: Division by zero"
 
 
 class Calculator:
@@ -13,35 +14,57 @@ class Calculator:
             input_is_number = True
         return input_is_number
 
-    # Add given two values and returns result
+    # Add two numbers
     def addition(self, value_1, value_2) -> int | str:
         given_valid_inputs = self.input_type_validator(value_1, value_2)
         if given_valid_inputs is not True:
             return type_error_message
         return value_1 + value_2
 
-    # Subtract given two values and returns result
+    # Subtract two numbers
     def subtraction(self, value_1, value_2) -> int | str:
         given_valid_inputs = self.input_type_validator(value_1, value_2)
         if given_valid_inputs is not True:
             return type_error_message
         return value_1 - value_2
 
+    # Multiply two numbers
+    def multiplication(self, value_1, value_2) -> int | str:
+        given_valid_inputs = self.input_type_validator(value_1, value_2)
+        if given_valid_inputs is not True:
+            return type_error_message
+        return value_1 * value_2
+
+    # Divide two numbers
+    def division(self, value_1, value_2) -> int | str:
+        given_valid_inputs = self.input_type_validator(value_1, value_2)
+        if given_valid_inputs is not True:
+            return type_error_message
+        try:
+            return value_1 / value_2
+        except Exception:
+            return divide_by_zero_error_message
+
 
 def call_calculator():
     cal = Calculator()
 
-    # check the values if you want
+    # change the values if you want
     value_1 = 10
-    value_2 = 20
+    value_2 = 0
 
     # Check for functionality
-    addition_result = cal.addition(value_1, value_2)
-    print(f"\nAddition:     {value_1} + {value_2} -> {addition_result}")
+    result = cal.addition(value_1, value_2)
+    print(f"\nAddition:     {value_1} + {value_2} -> {result}")
 
-    # Check for functionality
-    subtraction_result = cal.subtraction(value_1, value_2)
-    print(f"Subtraction:  {value_1} - {value_2} -> {subtraction_result}")
+    result = cal.subtraction(value_1, value_2)
+    print(f"Subtraction:  {value_1} - {value_2} -> {result}")
+
+    result = cal.division(value_1, value_2)
+    print(f"Division:     {value_1} / {value_2} -> {result}")
+
+    result = cal.multiplication(value_1, value_2)
+    print(f"Multiplication: {value_1} * {value_2} -> {result}")
 
 
 # call and verify if calculator works
