@@ -2,7 +2,11 @@
 Pipfile
 venv
 
-#pycache
+# pycache
 test/__pycache__/
 calculator_app/__pycache__/
 __pycache__/
+
+# dot files
+.pytest_cache
+.DS_Store
